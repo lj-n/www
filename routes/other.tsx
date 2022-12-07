@@ -1,4 +1,5 @@
 import { Head } from "$fresh/runtime.ts";
+
 export default function Other() {
   return (
     <>

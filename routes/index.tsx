@@ -11,6 +11,7 @@ export default function Home() {
       <div className="container">
         <Scene />
       </div>
+      <h1>Welcome <span style="color:tomato;">to my page</span> 👋</h1>
     </>
   );
 }

@@ -17,16 +17,19 @@ function init(canvas: HTMLCanvasElement) {
 
   // Camera
   camera = new THREE.PerspectiveCamera(
-    40,
+    35,
     canvas.clientWidth / canvas.clientHeight,
+    0.1,
+    1000,
   );
-  camera.position.z = 2;
+  // camera.position.z = 2;
+  camera.position.set(15, 15, 15);
   scene.add(camera);
 
   // Lights
-  const ambientLight = new THREE.AmbientLight(0x080808);
+  const ambientLight = new THREE.AmbientLight(0x000000);
   scene.add(ambientLight);
-  const light = new THREE.DirectionalLight(0xff3300);
+  const light = new THREE.DirectionalLight(0xffffff);
   light.position.set(0.5, 0.5, 1);
   scene.add(light);
 
@@ -37,22 +40,23 @@ function init(canvas: HTMLCanvasElement) {
     ambientLight,
   );
 
+  // const axesHelper = new THREE.AxesHelper(5000);
+  // scene.add(axesHelper);
+
   // MARCHING CUBES
 
-  const resolution = 64;
+  const resolution = 48;
 
   effect = new MarchingCubes(
     resolution,
     dottedMaterial,
     true,
-    true,
-    100000,
+    false,
+    10000,
   );
   effect.position.set(0, 0, 0);
-  effect.isolation = 180;
-
-  effect.enableUvs = false;
-  effect.enableColors = false;
+  effect.scale.set(7, 7, 7);
+  effect.isolation = 50;
 
   scene.add(effect);
 
@@ -66,6 +70,9 @@ function init(canvas: HTMLCanvasElement) {
 
   // Controls
   controls = new OrbitControls(camera, renderer.domElement);
+  controls.enablePan = false
+  controls.enableZoom = false
+  controls.rotateSpeed = 0.2
 
   // Start loop
   frameId = requestAnimationFrame(animate);
@@ -75,7 +82,7 @@ function animate(timestamp: number) {
   frameId = requestAnimationFrame(animate);
 
   const secondsPassed = Math.min((timestamp - lastFrame) / 1000, 0.1);
-  time += secondsPassed * 0.1;
+  time += secondsPassed * 0.2;
   lastFrame = timestamp;
 
   if (resizeRenderer(renderer)) {
@@ -84,7 +91,7 @@ function animate(timestamp: number) {
     camera.updateProjectionMatrix();
   }
 
-  updateCubes(20);
+  updateCubes(8);
 
   controls.update();
 
@@ -105,13 +112,14 @@ function updateCubes(numblobs: number) {
   // fill the field with some metaballs
   const subtract = 12;
   const strength = 1.2 / ((Math.sqrt(numblobs) - 1) / 4 + 1);
+  // const strength = 2;
 
   for (let i = 0; i < numblobs; i++) {
     const ballx =
       Math.sin(i + 1.26 * time * (1.03 + 0.5 * Math.cos(0.21 * i))) * 0.27 +
       0.5;
     const bally =
-      Math.abs(Math.cos(i + 1.12 * time * Math.cos(1.22 + 0.1424 * i))) * 0.77; // dip into the floor
+      Math.sin(i + 1.32 * time * 0.1 * Math.cos(0.92 + 0.53 * i)) * 0.27 + 0.5;
     const ballz =
       Math.cos(i + 1.32 * time * 0.1 * Math.sin(0.92 + 0.53 * i)) * 0.27 + 0.5;
 

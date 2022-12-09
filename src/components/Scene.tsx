@@ -1,10 +1,9 @@
 import * as THREE from "three";
-import { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import { MarchingCubes, MarchingCube, Environment, Sky, Bounds } from "@react-three/drei";
 import { Physics, RigidBody, BallCollider, RigidBodyApi } from "@react-three/rapier";
 import { Shader } from "../shader";
-
 import { ResizeObserver } from "@juggle/resize-observer";
 
 const vec = new THREE.Vector3();
@@ -35,16 +34,12 @@ function MetaBall({ ...props }: { position: [number, number, number] }) {
 }
 
 export default function Scene() {
-
-  // https://github.com/react-spring/react-use-measure/#resize-observer-polyfills
-  // useMemo(() => {
-  //   if(window) {
-  //     window.ResizeObserver = ResizeObserver;
-  //   }
-  // }, []);
-
   return (
-    <Canvas camera={{ position: [0, 0, 5], fov: 30 }} gl={{ alpha: true }}>
+    <Canvas
+      camera={{ position: [0, 0, 5], fov: 30 }}
+      gl={{ alpha: true }}
+      resize={{ polyfill: ResizeObserver }}
+    >
       <Physics gravity={[0, 0, 0]}>
         <MarchingCubes resolution={64} maxPolyCount={20000} enableUvs={false} enableColors={true}>
           <shaderMaterial attach="material" {...Shader} />

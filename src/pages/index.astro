@@ -1,0 +1,31 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Scene from "../components/Scene";
+---
+
+<Layout title="Welcome to the Scene.">
+  <div class="container">
+    <Scene client:load />
+  </div>
+  <h1>Welcome <span>to my page</span></h1>
+</Layout>
+
+<style>
+  div.container {
+    border: 2px dotted #262729;
+    max-width: 500px;
+    width: 100%;
+    height: 500px;
+    margin: 0 auto;
+  }
+  canvas {
+    width: 100%;
+    height: 100%;
+  }
+  h1 {
+    margin: auto;
+  }
+  h1 span {
+    color: tomato;
+  }
+</style>

@@ -16,9 +16,16 @@ const { title } = Astro.props;
     <title>{title}</title>
   </head>
   <body>
+    <script load:client>
+      console.log(
+        "%c 👋 Hi there, you can find the source code of my website at https://github.com/lj-n/www 🍭", 
+        "font-weight: bold; font-size: 24px; padding: 10px 6px"
+      )
+    </script>
     <slot />
   </body>
 </html>
+
 <style is:global>
   :root {
     color-scheme: light dark;
@@ -37,6 +44,6 @@ const { title } = Astro.props;
     overscroll-behavior: none;
     display: flex;
     flex-direction: column;
-    padding: 1rem 0.5rem;
+    /* padding: 1rem 0.5rem; */
   }
 </style>

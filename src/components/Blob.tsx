@@ -120,7 +120,7 @@ export default function Blob() {
 			</Physics>
 			<Bounds fit clip observe margin={1}>
 				<mesh visible={false}>
-					<boxGeometry args={[1.5]} />
+					<boxGeometry args={[2]} />
 				</mesh>
 			</Bounds>
 		</Canvas>

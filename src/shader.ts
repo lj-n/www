@@ -5,23 +5,23 @@ import { Color, Vector3 } from "three";
  */
 
 const Shader = {
-  uniforms: {
-    uDirLightPos: { value: new Vector3(0.6, 0.5, 0.8) },
+	uniforms: {
+		uDirLightPos: { value: new Vector3(0.6, 0.5, 0.8) },
 
-    uDirLightColor: { value: new Color(0xffffff) },
-    uAmbientLightColor: { value: new Color(0x000000) },
-    uBaseColor: { value: new Color(0xff6347) },
-    uLineColor: { value: new Color(0x000000) },
-  },
+		uDirLightColor: { value: new Color(0xffffff) },
+		uAmbientLightColor: { value: new Color(0x000000) },
+		uBaseColor: { value: new Color(0xff6347) },
+		uLineColor: { value: new Color(0x000000) },
+	},
 
-  vertexShader: /* glsl */ `
+	vertexShader: /* glsl */ `
 		varying vec3 vNormal;
 		void main() {
 			gl_Position = projectionMatrix * modelViewMatrix * vec4( position, 1.0 );
 			vNormal = normalize( normalMatrix * normal );
 		}`,
 
-  fragmentShader: /* glsl */ `
+	fragmentShader: /* glsl */ `
 		uniform vec3 uBaseColor;
 		uniform vec3 uLineColor;
 		uniform vec3 uDirLightPos;

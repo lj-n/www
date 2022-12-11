@@ -99,7 +99,7 @@ function Ball({ position }: { position: Point3Array }) {
   );
 }
 
-export default function Scene() {
+export default function Blob() {
   return (
     <Canvas
       camera={{ position: [0, 0, 5], fov: 30 }}

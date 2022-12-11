@@ -5,5 +5,5 @@ import deno from "@astrojs/deno";
 export default defineConfig({
   integrations: [react()],
   output: "server",
-  adapter: deno()
+  adapter: deno(),
 });

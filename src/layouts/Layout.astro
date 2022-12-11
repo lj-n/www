@@ -18,9 +18,9 @@ const { title } = Astro.props;
   <body>
     <script load:client>
       console.log(
-        "%c 👋 Hi there, you can find the source code of my website at https://github.com/lj-n/www 🍭", 
+        "%c 👋 Hi there, you can find the source code of my website at https://github.com/lj-n/www 🍭",
         "font-weight: bold; font-size: 24px; padding: 10px 6px"
-      )
+      );
     </script>
     <slot />
   </body>
@@ -43,7 +43,18 @@ const { title } = Astro.props;
     overflow-y: scroll;
     overscroll-behavior: none;
     display: flex;
-    flex-direction: column;
-    /* padding: 1rem 0.5rem; */
+    gap: 4rem;
+  }
+  #hero-card {
+    height: 300px;
+    width: 400px;
+    margin: auto;
+  }
+  #hero-card img {
+    width: 100%;
+    height: auto;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
   }
 </style>

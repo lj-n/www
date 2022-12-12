@@ -1,17 +1,17 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import Blob from "../components/Blob";
-import HeroCard from "../components/HeroCard";
+import InfoCard from "../components/InfoCard";
 import { Content as MyContent } from "../components/Code.md";
 ---
 
-<Layout title="linus the dev">
+<Layout title="linus the dev" description="My personal website, some tutorials and more.">
 	<div class="blob-container">
 		<Blob client:load />
 	</div>
-	<HeroCard client:load>
+	<InfoCard client:load>
 		<MyContent />
-	</HeroCard>
+	</InfoCard>
 </Layout>
 
 <style>

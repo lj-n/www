@@ -5,7 +5,6 @@
 	"private": true,
 	"scripts": {
 		"dev": "astro dev",
-		"start": "astro dev",
 		"build": "astro build",
 		"preview": "deno run --allow-net --allow-read --allow-env ./dist/server/entry.mjs",
 		"astro": "astro"

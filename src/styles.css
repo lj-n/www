@@ -2,13 +2,17 @@
 :root {
 	color-scheme: dark light;
 	--bg-color: #0a0a0a;
-	--bg-info-card: #121212;
+	--bg-info-card: #1e0606;
 	--icon-color: #fff7f4;
+	/* --rotation-x: 0;
+	--rotation-y: 0; */
+	--x: 0;
+	--y: 0;
 }
 @media (prefers-color-scheme: light) {
 	:root {
-		--bg-color: #fff7f4;
-		--bg-info-card: #332b29;
+		--bg-color: #f3e4e2;
+		--bg-info-card: #1e0606;
 		--icon-color: #332b29;
 	}
 }
@@ -35,17 +39,35 @@ body {
 }
 
 /* Info Card */
-#info-card {
-	/* padding: 4rem; */
-	margin: 0 auto;
+#spring-card {
+	margin: auto;
+	position: relative;
+	border-radius: 0.5rem;
+	transform-style: preserve-3d;
 }
+
+#spring-card .spring-background {
+	position: absolute;
+	height: 105%;
+	width: 110%;
+	border-radius: 0.5rem;
+	inset: 0;
+	background: #ff7b72;
+	transform-style: preserve-3d;
+}
+
 pre {
 	font-size: 20px;
 	padding: 2rem 3rem;
 	border-radius: 0.5rem;
 	line-height: 1.3;
 	box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.25);
+	/* background-color: var(--bg-info-card) !important; */
 }
+pre span {
+	/* opacity: 0; */
+}
+
 
 /* Blob */
 .blob-container {

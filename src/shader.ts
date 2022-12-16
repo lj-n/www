@@ -10,7 +10,7 @@ const Shader = {
 
 		uDirLightColor: { value: new Color(0xffffff) },
 		uAmbientLightColor: { value: new Color(0x000000) },
-		uBaseColor: { value: new Color(0xff6347) },
+		uBaseColor: { value: new Color(0xff7b72) },
 		uLineColor: { value: new Color(0x000000) },
 	},
 

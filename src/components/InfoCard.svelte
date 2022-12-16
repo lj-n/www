@@ -61,7 +61,6 @@
 	on:pointermove={handleMove}
 	style={css}
 >
-	<div class="background" />
 	<div class="wrapper">
 		<slot />
 	</div>
@@ -70,20 +69,23 @@
 <style>
 	div.card {
 		margin: auto;
-		border-radius: 0.5rem;
+		border-radius: 0.25rem;
 		transform-style: preserve-3d;
 		transform: perspective(1000px) rotateX(var(--x, 0deg)) rotateY(var(--y, 0deg)) translateZ(0);
 		backface-visibility: hidden;
 		position: relative;
 	}
-	div.card div.background {
+	div.card::after {
+		content: "";
 		position: absolute;
 		height: 105%;
 		width: 110%;
-		border-radius: 0.5rem;
+		border-radius: 0.25rem;
 		inset: 0;
-		background: #ff7b72;
+		border: 2px solid var(--card-border);
+		background: linear-gradient(45deg, var(--red) 0%, var(--blue) 100%);
 		transform-style: preserve-3d;
+		box-shadow: var(--shadow-big);
 		transform: perspective(1000px) translate3d(-5%, -2.5%, -64px) rotateX(var(--bg-x))
 			rotateY(var(--bg-y));
 	}

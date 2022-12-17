@@ -1,3 +1,5 @@
+[![Deno Deploy](https://github.com/lj-n/www/actions/workflows/deploy.yaml/badge.svg?branch=main)](https://github.com/lj-n/www/actions/workflows/deploy.yaml)
+
 # linusthe.dev
 
 This site is build with [Astro](https://docs.astro.build/en/getting-started/).

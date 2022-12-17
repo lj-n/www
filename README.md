@@ -1,4 +1,4 @@
-![Deno Deploy](https://github.com/lj-n/www/blob/main/.github/workflows/deploy.yaml/badge.svg)
+[![Deno Deploy](https://github.com/lj-n/www/actions/workflows/deploy.yaml/badge.svg?branch=main)](https://github.com/lj-n/www/actions/workflows/deploy.yaml)
 
 # linusthe.dev
 

@@ -15,8 +15,17 @@
 		const mediaQueryList = window.matchMedia(reducedMotionQuery);
 		mediaQueryList.addEventListener("change", updateReducedMotion);
 
+		/* reset animation when page is not visible */
+		const handleVisibilityChange = (_ev: Event) => {
+			if (document.hidden) {
+				resetSpring(true);
+			}
+		};
+		document.addEventListener("visibilitychange", handleVisibilityChange);
+
 		return () => {
 			mediaQueryList.removeEventListener("change", updateReducedMotion);
+			document.removeEventListener("visibilitychange", handleVisibilityChange);
 		};
 	});
 
@@ -25,10 +34,10 @@
 	$: rect = card?.getBoundingClientRect();
 
 	/* Spring Animation */
-	const coords = spring({ x: 0, y: 0 }, { stiffness: 0.1, damping: 0.95 });
+	const coords = spring({ x: 0, y: 0 }, { stiffness: 0.05, damping: 0.99 });
 
-	function resetSpring() {
-		coords.set({ y: 0, x: 0 }, { soft: 4, hard: reducedMotion });
+	function resetSpring(immediate = false) {
+		coords.set({ y: 0, x: 0 }, { soft: 4, hard: immediate || reducedMotion });
 	}
 
 	function handleMove(ev: PointerEvent) {
@@ -36,10 +45,9 @@
 			resetSpring();
 			return;
 		}
-
 		coords.set({
-			y: ((ev.clientX - rect.left) / rect.width - 0.5) * 18,
-			x: -((ev.clientY - rect.top) / rect.height - 0.5) * 30,
+			y: ((ev.clientX - rect.left) / rect.width - 0.5) * 28,
+			x: -((ev.clientY - rect.top) / rect.height - 0.5) * 36,
 		});
 	}
 
@@ -55,27 +63,31 @@
 </script>
 
 <div
-	class="card"
+	class={$$props.class + " card"}
 	bind:this={card}
-	on:pointerleave={resetSpring}
+	on:pointerleave={() => resetSpring()}
 	on:pointermove={handleMove}
-	style={css}
+	style="width: fit-content;margin: auto;"
 >
-	<div class="wrapper">
-		<slot />
+	<div class="wrapper" style={css}>
+		<div class="content">
+			<slot />
+		</div>
 	</div>
 </div>
 
 <style>
-	div.card {
+	.card {
 		margin: auto;
+	}
+	.wrapper {
 		border-radius: 0.25rem;
 		transform-style: preserve-3d;
 		transform: perspective(1000px) rotateX(var(--x, 0deg)) rotateY(var(--y, 0deg)) translateZ(0);
 		backface-visibility: hidden;
 		position: relative;
 	}
-	div.card::after {
+	.wrapper::after {
 		content: "";
 		position: absolute;
 		height: 105%;
@@ -89,7 +101,7 @@
 		transform: perspective(1000px) translate3d(-5%, -2.5%, -64px) rotateX(var(--bg-x))
 			rotateY(var(--bg-y));
 	}
-	div.wrapper {
+	.content {
 		padding: 2rem;
 	}
 </style>

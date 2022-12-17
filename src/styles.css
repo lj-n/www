@@ -4,25 +4,36 @@
 	--shadow-small: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
 	--shadow-big: rgba(255, 255, 255, 0.1) 0px 1px 1px 0px inset,
 		rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.2) 0px 30px 60px -30px;
-	--background-color: #0a0a0a;
-	--icon-color: #fff7f4;
+	--background-color: #f3e4e2;
+	--icon-color: #332b29;
+	--card-border: #fcf6f5;
 	--red: #ff7b72;
 	--blue: #4381c1;
-	--card-border: #c9d1d9;
 }
-@media (prefers-color-scheme: light) {
+
+/* :root.dark {
+	--background-color: #0a0a0a;
+	--icon-color: #fff7f4;
+	--card-border: #c9d1d9;
+} */
+
+@media (prefers-color-scheme: dark) {
 	:root {
-		--background-color: #f3e4e2;
-		--icon-color: #332b29;
-		--card-border: #fcf6f5;
+		--background-color: #0a0a0a;
+		--icon-color: #fff7f4;
+		--card-border: #c9d1d9;
 	}
 }
+
 
 /* Base */
 * {
 	box-sizing: border-box;
 	margin: 0;
 	padding: 0;
+	transition-property: background-color, color, border-color;
+	transition-duration: 200ms;
+	transition-timing-function: ease-in;
 }
 html {
 	font-family: system-ui, sans-serif;
